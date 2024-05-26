@@ -1,16 +1,23 @@
+package source.utils;
+
+
 import javax.swing.*;
 import java.io.*;
 //klasy odpowiadajace za wczytanie danych z pliku
 public class DataLoader {
     private char[][] dataArray;
 
-    public void loadDataFile(JFrame frame) {
+    public void loadDataFile() {
         JFileChooser fileChooser = new JFileChooser();
-        if (fileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+        int returnValue = fileChooser.showOpenDialog(null);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             dataArray = loadFileData(file.getAbsolutePath());
         }
     }
+
+    
 //wczytanie ilsoci kolumn i wierszy, co wazne ilosc kolumn jest zapiswyana
 //jedynie na podstawie elementow pierwszego weirsza
     private char[][] loadFileData(String fileName) {
