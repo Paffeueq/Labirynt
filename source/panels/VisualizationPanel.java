@@ -50,7 +50,6 @@ public class VisualizationPanel extends JPanel{
                 /* TODO: multiple cardLayout */
                 CardLayout cardLayout = (CardLayout) cardPanel.getLayout();
                 
-                System.out.println("go back");
                 cardLayout.show(cardPanel, "main");
                 
             }
