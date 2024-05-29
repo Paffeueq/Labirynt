@@ -8,18 +8,18 @@ public class DataLoader {
     private char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
 
     // Metoda do wczytywania pliku z danymi
-    public void loadDataFile() {
+    public void selectFile() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            dataArray = loadFileData(file.getAbsolutePath());
+            dataArray = readFile(file.getAbsolutePath());
         }
     }
 
     // Metoda do wczytywania danych z pliku o podanej ścieżce
-    public char[][] loadFileData(String fileName) {
+    public char[][] readFile(String fileName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName)); // Strumień do czytania danych z pliku
             StringBuilder fileContent = new StringBuilder(); // Budowniczy dla zawartości pliku
@@ -41,7 +41,6 @@ public class DataLoader {
                 }
             }
 
-            System.out.println("Data loaded with rows: " + rows + ", columns: " + columns); // Komunikat debugujący
             return dataArray; // Zwrócenie wczytanych danych
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Nie można wczytać podanego pliku: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); // Komunikat o błędzie
@@ -50,7 +49,7 @@ public class DataLoader {
     }
 
     // Metoda zwracająca wczytane dane z pliku
-    public char[][] getDataArray() {
+    public char[][] getData() {
         return dataArray;
     }
 }

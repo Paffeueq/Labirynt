@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 
 import source.utils.DataLoader;
+import source.utils.MazeSolver;
 
 public class VisualizationPanel extends JPanel{
     Color bgColor = new Color(96, 96, 96);
@@ -19,8 +20,10 @@ public class VisualizationPanel extends JPanel{
     DataLoader dataLoader;
     MazePanel mazePanel;
 
+    private MazeSolver solver = new MazeSolver();
+
     public VisualizationPanel(JPanel cardPanel, DataLoader dataLoader){
-        mazePanel = new MazePanel(dataLoader);
+        mazePanel = new MazePanel();
         this.cardPanel = cardPanel;
         this.dataLoader = dataLoader;
 
@@ -56,7 +59,30 @@ public class VisualizationPanel extends JPanel{
             
         });
 
+        JButton solveBtn = new JButton();
+        solveBtn.setBounds(1600, 100, 100, 40);
+        solveBtn.setText("solve");
+        solveBtn.setBackground(btnColor);
+        solveBtn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                char[][] maze = dataLoader.getData();
+                int sizeX = maze[0].length, sizeY = maze.length;
+                int startX = 1, startY = 1;
+                int endX = sizeX- 2;
+                int endY = sizeY - 2;
+
+                char[][] data = solver.getPath(maze, startX, startY, endX, endY, sizeX, sizeY);
+                
+                mazePanel.mazeData = data;
+                mazePanel.visualize();
+            }
+            
+        });
+
         add(homeBtn);
+        add(solveBtn);
     }
 
     public void visualize(){

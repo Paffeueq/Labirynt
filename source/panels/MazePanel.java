@@ -2,28 +2,21 @@ package source.panels;
 
 import javax.swing.*;
 
-import source.utils.DataLoader;
-
 import java.awt.*;
 
 public class MazePanel extends JPanel {
-    DataLoader dataLoader;
-    
-    public MazePanel(DataLoader dataLoader) {
-        this.dataLoader = dataLoader;
-    }
+    public char[][] mazeData;
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-
         drawPixels(g);
     }
 
-    private void drawPixels(Graphics g){
-        char[][] dataArray = dataLoader.getDataArray();
+    public void drawPixels(Graphics g){
+        
         int panelWidth = getWidth(), panelHeight = getHeight();
-        int labWidth = dataArray[0].length, labHeight = dataArray.length;
+        int labWidth = mazeData[0].length, labHeight = mazeData.length;
         
 
         int width = panelWidth / labWidth;
@@ -33,8 +26,10 @@ public class MazePanel extends JPanel {
         while(compY < labHeight){
             compX = 0;
             while(compX < labWidth){
-                if(dataArray[compY][compX] == 'X')
+                if(mazeData[compY][compX] == 'X')
                     g.setColor(Color.BLACK);
+                else if(mazeData[compY][compX] == '^')
+                    g.setColor(Color.GREEN);
                 else 
                     g.setColor(Color.WHITE);
                 

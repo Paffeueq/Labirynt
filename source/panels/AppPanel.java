@@ -46,7 +46,7 @@ public class AppPanel extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                dataLoader.loadDataFile();
+                dataLoader.selectFile();
             }
             
         });
@@ -59,6 +59,9 @@ public class AppPanel extends JPanel{
             public void actionPerformed(ActionEvent arg0) {
                 CardLayout cardLayout = (CardLayout) cardPanel.getLayout();
                 
+                char[][] data = dataLoader.getData();
+
+                visualizationPanel.mazePanel.mazeData = data;
                 visualizationPanel.visualize();
                 cardLayout.show(cardPanel, "vis");
             }
