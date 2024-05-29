@@ -4,7 +4,10 @@ package source.utils;
 import javax.swing.*;
 import java.io.*;
 
-<<<<<<< HEAD:source/utils/DataLoader.java
+public class DataLoader {
+    private char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
+
+    // Metoda do wczytywania pliku z danymi
     public void loadDataFile() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
@@ -14,34 +17,6 @@ import java.io.*;
             dataArray = loadFileData(file.getAbsolutePath());
         }
     }
-
-    
-//wczytanie ilsoci kolumn i wierszy, co wazne ilosc kolumn jest zapiswyana
-//jedynie na podstawie elementow pierwszego weirsza
-    private char[][] loadFileData(String fileName) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            StringBuilder fileContent = new StringBuilder();
-            String line = reader.readLine();
-            int rows = 0;
-            while (line != null) {
-                fileContent.append(line).append("\n");
-                rows++;
-                line = reader.readLine();
-            }
-=======
-// Klasa do wczytywania danych z pliku
-public class DataLoader {
-    private char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
-
-    // Metoda do wczytywania pliku z danymi
-    public void loadDataFile(JFrame frame) {
-        JFileChooser fileChooser = new JFileChooser(); // Okno wyboru pliku
-        if (fileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile(); // Wybrany plik
-            dataArray = loadFileData(file.getAbsolutePath()); // Wczytanie danych z pliku
-        }
-    }
->>>>>>> master:src/DataLoader.java
 
     // Metoda do wczytywania danych z pliku o podanej ścieżce
     public char[][] loadFileData(String fileName) {
