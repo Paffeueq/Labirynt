@@ -1,4 +1,4 @@
-package source.app;
+package com.tymipawi.labirynt;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -6,8 +6,8 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import source.panels.*;
-import source.utils.DataLoader;
+import com.tymipawi.labirynt.utils.*;
+import com.tymipawi.labirynt.panels.*;
 
 public class App {
     private static JFrame mainFrame;

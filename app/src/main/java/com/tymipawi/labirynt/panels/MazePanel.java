@@ -1,4 +1,4 @@
-package source.panels;
+package com.tymipawi.labirynt.panels;
 
 import javax.swing.*;
 

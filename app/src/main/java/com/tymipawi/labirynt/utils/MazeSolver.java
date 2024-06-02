@@ -1,6 +1,5 @@
-package source.utils;
+package com.tymipawi.labirynt.utils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;

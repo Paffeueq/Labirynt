@@ -1,16 +1,16 @@
-package source.panels;
+package com.tymipawi.labirynt.panels;
 
 import java.awt.CardLayout;
 import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-import source.utils.DataLoader;
-import source.utils.MazeSolver;
+import com.tymipawi.labirynt.utils.*;;
 
 public class VisualizationPanel extends JPanel{
     Color bgColor = new Color(96, 96, 96);

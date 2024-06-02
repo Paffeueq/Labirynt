@@ -1,4 +1,4 @@
-package source.panels;
+package com.tymipawi.labirynt.panels;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import source.utils.*;
+import com.tymipawi.labirynt.utils.*;
 
 public class AppPanel extends JPanel{
     private JPanel cardPanel;

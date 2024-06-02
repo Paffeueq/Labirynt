@@ -1,4 +1,4 @@
-package source.app;
+package com.tymipawi.labirynt;
 
 public class Main {
     
