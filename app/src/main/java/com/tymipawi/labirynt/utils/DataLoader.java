@@ -5,14 +5,17 @@ import java.io.*;
 
 public class DataLoader {
     private char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
+    private int entryX, entryY, exitX, exitY;
+    private String selectedFile;
 
     // Metoda do wczytywania pliku z danymi
     public void selectFile() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
-
+        
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
+            selectedFile = file.getName();
             dataArray = readFile(file.getAbsolutePath());
         }
     }
@@ -36,7 +39,29 @@ public class DataLoader {
             String[] lines = fileContent.toString().split("\n"); // Podział zawartości pliku na linie
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    dataArray[i][j] = lines[i].charAt(j); // Wczytanie znaków do tablicy
+                    char crt = lines[i].charAt(j);
+                    dataArray[i][j] = crt; // Wczytanie znaków do tablicy
+
+                    if(crt == 'P'){
+                        if(i == 0)
+                            entryY = i + 1;
+                        else
+                            entryY = i;
+                        if(j == 0)
+                            entryX = j + 1;
+                        else
+                            entryX = j;
+                    }
+                    if(crt == 'K'){
+                        if(i == rows-1)
+                            exitY = i - 1;
+                        else
+                            exitY = i;
+                        if(j == columns-1)
+                            exitX = j - 1;
+                        else
+                            exitX = j;
+                    }
                 }
             }
 
@@ -51,4 +76,28 @@ public class DataLoader {
     public char[][] getData() {
         return dataArray;
     }
+
+    public int getEntryX() {
+        return entryX;
+    }
+
+    // Getter for entryY
+    public int getEntryY() {
+        return entryY;
+    }
+
+    // Getter for exitX
+    public int getExitX() {
+        return exitX;
+    }
+
+    // Getter for exitY
+    public int getExitY() {
+        return exitY;
+    }
+
+    public String getSelectedFile(){
+        return selectedFile;
+    }
+
 }

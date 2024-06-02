@@ -14,11 +14,19 @@ public class MazePanel extends JPanel {
     }
 
     public void drawPixels(Graphics g){
-        
-        int panelWidth = getWidth(), panelHeight = getHeight();
-        int labWidth = mazeData[0].length, labHeight = mazeData.length;
-        
+        if(g==null)
+            return;
 
+        int panelWidth = getWidth(), panelHeight = getHeight();
+        Color emptyColor = new Color(54, 69, 79),
+              pathColor = new Color(54,140,150);
+        g.setColor(emptyColor);
+        g.fillRect(0, 0, panelWidth, panelHeight);
+
+        if(mazeData == null)
+            return;
+
+        int labWidth = mazeData[0].length, labHeight = mazeData.length;
         int width = panelWidth / labWidth;
         int height = panelHeight / labHeight;
         
@@ -29,7 +37,7 @@ public class MazePanel extends JPanel {
                 if(mazeData[compY][compX] == 'X')
                     g.setColor(Color.BLACK);
                 else if(mazeData[compY][compX] == '^')
-                    g.setColor(Color.GREEN);
+                    g.setColor(pathColor);
                 else 
                     g.setColor(Color.WHITE);
                 
@@ -39,6 +47,7 @@ public class MazePanel extends JPanel {
             compY++;
         }
     }
+
     public void visualize(){
         repaint();
     }
