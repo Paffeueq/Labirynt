@@ -1,11 +1,18 @@
 package com.tymipawi.labirynt.panels;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.xml.crypto.Data;
 
+import com.tymipawi.labirynt.utils.DataLoader;
 import com.tymipawi.labirynt.utils.InputModyfier;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 
 public class MazePanel extends JPanel {
     public static char[][] mazeData;
@@ -68,5 +75,17 @@ public class MazePanel extends JPanel {
 
     public void visualize(){
         repaint();
+    }
+
+     public void savePanelAsImage() {
+        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = image.createGraphics();
+        this.paint(g2d);
+        g2d.dispose();
+        try {
+            ImageIO.write(image, "png", new File("data/output/"+DataLoader.getSelectedFile().replace(".txt", ".png")));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

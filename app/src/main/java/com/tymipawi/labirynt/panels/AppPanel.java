@@ -1,13 +1,18 @@
 package com.tymipawi.labirynt.panels;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
@@ -143,6 +148,14 @@ public class AppPanel extends JPanel{
         modifyBtnGrp.add(noMod);
         modifyBtnGrp.add(startMod);
         modifyBtnGrp.add(endMod);
+        
+
+        JButton saveButton = new JButton("zapisz wizualizacje");
+        saveButton.setFont(new Font("Arial", Font.BOLD, 18));
+        saveButton.setBackground(btnColor);
+        saveButton.setBounds(1500, 200, 300, 100);
+        saveButton.addActionListener(e -> mazePanel.savePanelAsImage());
+        add(saveButton);
 
         add(modLabel);
         add(noMod);
@@ -156,5 +169,7 @@ public class AppPanel extends JPanel{
         loadedFile = filename;
         filenameLabel.setText(loadedFile);
     }
+
+   
 
 }

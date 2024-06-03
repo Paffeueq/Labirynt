@@ -9,7 +9,7 @@ import java.io.*;
 public class DataLoader {
     private static char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
     private static int entryX, entryY, exitX, exitY;
-    private String selectedFile;
+    private static String selectedFile;
 
     // Metoda do wczytywania pliku z danymi
     public void selectFile() {
@@ -133,7 +133,7 @@ public class DataLoader {
         return exitY;
     }
 
-    public String getSelectedFile(){
+    public static String getSelectedFile(){
         return selectedFile;
     }
 
