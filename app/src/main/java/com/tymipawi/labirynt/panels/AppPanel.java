@@ -95,8 +95,8 @@ public class AppPanel extends JPanel {
                 char[][] maze = dataLoader.getData();
                 int sizeX = maze[0].length, sizeY = maze.length;
 
-                char[][] data = solver.getPath(maze, dataLoader.getEntryX(), dataLoader.getEntryY(),
-                        dataLoader.getExitX(), dataLoader.getExitY(), sizeX, sizeY);
+                char[][] data = solver.getPath(maze, DataLoader.getEntryX(), DataLoader.getEntryY(),
+                        DataLoader.getExitX(), DataLoader.getExitY(), sizeX, sizeY);
 
                 MazePanel.mazeData = data;
                 mazePanel.visualize();

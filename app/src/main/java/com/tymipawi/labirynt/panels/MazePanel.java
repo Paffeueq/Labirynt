@@ -16,6 +16,7 @@ public class MazePanel extends JPanel {
     public static char[][] mazeData;
     private int cellWidth = -1, cellHeight = -1;
     private InputModifier inputModifier = new InputModifier(this);
+    public static boolean modified = false;
 
     // Zmienne do przechowywania punktów wejścia i wyjścia
     public static int entryX, entryY, exitX, exitY;
@@ -57,11 +58,11 @@ public class MazePanel extends JPanel {
             while(compX < labWidth){
                 if(mazeData[compY][compX] == 'X')
                     g.setColor(Color.BLACK);
-                else if(mazeData[compY][compX] == 'P')
+                else if(mazeData[compY][compX] == 'P' && (Math.abs(DataLoader.getEntryX()-compX) <= 1 && Math.abs(DataLoader.getEntryY()-compY) <= 1))
                     g.setColor(Color.GREEN);
                 else if(mazeData[compY][compX] == 'K')
                     g.setColor(Color.RED);
-                else if(mazeData[compY][compX] == '^')
+                else if(mazeData[compY][compX] == '^' && !(modified==true && compY == 1 && compX == 1))
                     g.setColor(pathColor);
                 else 
                     g.setColor(Color.WHITE);

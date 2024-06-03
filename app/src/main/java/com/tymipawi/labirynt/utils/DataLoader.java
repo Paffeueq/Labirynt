@@ -8,7 +8,7 @@ public class DataLoader {
     private static char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
     private static int entryX, entryY, exitX, exitY;
     private static String selectedFile;
-
+    
     // Metoda do wczytywania pliku z danymi
     public void selectFile() {
         JFileChooser fileChooser = new JFileChooser();
@@ -182,16 +182,20 @@ public class DataLoader {
         if ((cellX == 0 || cellY == 0) || (cellX % 2 != 0 && cellY % 2 != 0)) {
             entryX = cellX;
             entryY = cellY;
-        }
 
-        for (int i = 0; i < dataArray.length; i++) {
-            for (int j = 0; j < dataArray[0].length; j++) {
-                if (dataArray[i][j] == 'P')
-                    dataArray[i][j] = ' ';
-                if (i == entryY && j == entryX)
-                    dataArray[i][j] = 'P';
+            for (int i = 0; i < dataArray.length; i++) {
+                for (int j = 0; j < dataArray[0].length; j++) {
+                    if (dataArray[i][j] == 'P')
+                        dataArray[i][j] = ' ';
+                    if (i == entryY && j == entryX)
+                        dataArray[i][j] = 'P';
+                    if(dataArray[i][j] == '^')
+                        dataArray[i][j] = ' ';
+                }
             }
         }
+
+        
         MazePanel.mazeData = dataArray;
     }
 
@@ -199,14 +203,15 @@ public class DataLoader {
         if ((cellX == 0 || cellY == 0) || (cellX % 2 != 0 && cellY % 2 != 0)) {
             exitX = cellX;
             exitY = cellY;
-        }
-
-        for (int i = 0; i < dataArray.length; i++) {
-            for (int j = 0; j < dataArray[0].length; j++) {
-                if (dataArray[i][j] == 'K')
-                    dataArray[i][j] = ' ';
-                if (i == exitY && j == exitX)
-                    dataArray[i][j] = 'K';
+            for (int i = 0; i < dataArray.length; i++) {
+                for (int j = 0; j < dataArray[0].length; j++) {
+                    if (dataArray[i][j] == 'K')
+                        dataArray[i][j] = ' ';
+                    if (i == exitY && j == exitX)
+                        dataArray[i][j] = 'K';
+                    if(dataArray[i][j] == '^')
+                        dataArray[i][j] = ' ';
+                }
             }
         }
         MazePanel.mazeData = dataArray;
@@ -214,32 +219,23 @@ public class DataLoader {
 
     // Metoda zwracająca wczytane dane z pliku
     public char[][] getData() {
-        int numRows = dataArray.length;
-        int numCols = dataArray[0].length;
 
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                if (dataArray[i][j] == '^') {
-                    dataArray[i][j] = ' ';
-                }
-            }
-    }
         return dataArray;
     }
 
-    public int getEntryX() {
+    public static int getEntryX() {
         return entryX;
     }
 
-    public int getEntryY() {
+    public static int getEntryY() {
         return entryY;
     }
 
-    public int getExitX() {
+    public static int getExitX() {
         return exitX;
     }
 
-    public int getExitY() {
+    public static int getExitY() {
         return exitY;
     }
 

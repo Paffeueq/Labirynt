@@ -57,7 +57,7 @@ public class MazeSolver {
             crt = q.remove();
             visited.put(crt, true);
     
-    
+
             if (crt.x == endX && crt.y == endY) {
                 break;
             }
@@ -97,17 +97,49 @@ public class MazeSolver {
                 }
             }
         }
-    
+        
+        Coords prev = new Coords(-1, -1);
         crt = new Coords(endX, endY);
         int i = 0;
         while (!crt.equals(new Coords(startX, startY))) {
-            if(i > 0)
-                path[crt.y][crt.x] = '^';
+            path[crt.y][crt.x] = '^';
+            if(i > 0){
+                if(prev.x == crt.x){
+                    if(crt.y > prev.y){
+                        path[crt.y-1][crt.x] = '^';
+                    }
+                    else
+                        path[crt.y+1][crt.x] = '^';
+                }
+                if(prev.y == crt.y){
+                    if(crt.x > prev.x){
+                        path[crt.y][crt.x-1] = '^';
+                    }
+                    else
+                        path[crt.y][crt.x+1] = '^';
+                }
+            }
+                
             
             i++;
+            prev = crt;
             crt = parent.get(crt);
         }
-        //path[crt.y][crt.y] = '^';
+        if(prev.x == crt.x){
+            if(crt.y > prev.y){
+                path[crt.y-1][crt.x] = '^';
+            }
+            else
+                path[crt.y+1][crt.x] = '^';
+        }
+        if(prev.y == crt.y){
+            if(crt.x > prev.x){
+                path[crt.y][crt.x-1] = '^';
+            }
+            else
+                path[crt.y][crt.x+1] = '^';
+        }
+        path[crt.y][crt.y] = '^';
     
         return path;
     }
