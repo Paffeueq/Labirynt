@@ -5,9 +5,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import com.tymipawi.labirynt.utils.*;
@@ -22,6 +24,11 @@ public class AppPanel extends JPanel{
     
     private JLabel fileLabel, filenameLabel;
     public String loadedFile = "brak";
+
+
+    public static JRadioButton noMod;
+    public static JRadioButton startMod;
+    public static JRadioButton endMod;
 
     public AppPanel(){
         dataLoader = new DataLoader();
@@ -76,7 +83,7 @@ public class AppPanel extends JPanel{
             public void actionPerformed(ActionEvent arg0) {
                 dataLoader.selectFile();
                 updateSelectedFile(dataLoader.getSelectedFile());
-                mazePanel.mazeData = dataLoader.getData();
+                MazePanel.mazeData = dataLoader.getData();
                 mazePanel.visualize();
             }
             
@@ -97,12 +104,50 @@ public class AppPanel extends JPanel{
                 char[][] data = solver.getPath(maze, dataLoader.getEntryX(), dataLoader.getEntryY(),
                                                dataLoader.getExitX(), dataLoader.getExitY(), sizeX, sizeY);
                 
-                mazePanel.mazeData = data;
+                MazePanel.mazeData = data;
                 mazePanel.visualize();
             }
             
         });
+        
+        JLabel modLabel = new JLabel("modyfikacja:");
+        modLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        modLabel.setVerticalAlignment(SwingConstants.CENTER);
+        modLabel.setOpaque(true);
+        modLabel.setBounds(1500, 450, 300, 50);
+        modLabel.setBackground(btnColor);
+        modLabel.setFont(new Font("Arial", Font.BOLD, 18));
 
+        ButtonGroup modifyBtnGrp = new ButtonGroup();
+        // Create three JRadioButtons
+        noMod = new JRadioButton("brak");
+        startMod = new JRadioButton("poczatek");
+        endMod = new JRadioButton("koniec");
+        noMod.setFont(new Font("Arial", Font.BOLD, 15));
+        noMod.setBackground(btnColor);
+        startMod.setFont(new Font("Arial", Font.BOLD, 15));
+        startMod.setBackground(btnColor);
+        endMod.setFont(new Font("Arial", Font.BOLD, 15));
+        endMod.setBackground(btnColor);
+        noMod.setHorizontalAlignment(SwingConstants.CENTER);
+        noMod.setVerticalAlignment(SwingConstants.CENTER);
+        startMod.setHorizontalAlignment(SwingConstants.CENTER);
+        startMod.setVerticalAlignment(SwingConstants.CENTER);
+        endMod.setHorizontalAlignment(SwingConstants.CENTER);
+        endMod.setVerticalAlignment(SwingConstants.CENTER);
+
+        noMod.setBounds(1500, 500, 100, 50);
+        startMod.setBounds(1600, 500, 100, 50);
+        endMod.setBounds(1700, 500, 100, 50);
+        // Add the radio buttons to the ButtonGroup
+        modifyBtnGrp.add(noMod);
+        modifyBtnGrp.add(startMod);
+        modifyBtnGrp.add(endMod);
+
+        add(modLabel);
+        add(noMod);
+        add(endMod);
+        add(startMod);
         add(solveBtn);
         add(loadButton);
     }

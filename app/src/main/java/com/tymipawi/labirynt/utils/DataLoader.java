@@ -1,11 +1,14 @@
 package com.tymipawi.labirynt.utils;
 
 import javax.swing.*;
+
+import com.tymipawi.labirynt.panels.MazePanel;
+
 import java.io.*;
 
 public class DataLoader {
-    private char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
-    private int entryX, entryY, exitX, exitY;
+    private static char[][] dataArray; // Tablica przechowująca wczytane dane z pliku
+    private static int entryX, entryY, exitX, exitY;
     private String selectedFile;
 
     // Metoda do wczytywania pliku z danymi
@@ -70,6 +73,40 @@ public class DataLoader {
             JOptionPane.showMessageDialog(null, "Nie można wczytać podanego pliku: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); // Komunikat o błędzie
             return new char[0][0]; // Zwrócenie pustej tablicy w przypadku błędu
         }
+    }
+
+    public void setStart(int cellX, int cellY){
+        if((cellX == 0 || cellY == 0) || (cellX % 2 != 0 && cellY % 2 != 0)){
+            entryX = cellX;
+            entryY = cellY;
+        }
+
+        for (int i = 0; i < dataArray.length; i++) {
+            for (int j = 0; j < dataArray[0].length; j++) {
+                if(dataArray[i][j] == 'P')
+                    dataArray[i][j] = ' ';
+                if(i == entryY && j == entryX)
+                    dataArray[i][j] = 'P';
+            }
+        }
+        MazePanel.mazeData = dataArray;
+    }
+
+    public void setEnd(int cellX, int cellY){
+        if((cellX == 0 || cellY == 0) || (cellX % 2 != 0 && cellY % 2 != 0)){
+            exitX = cellX;
+            exitY = cellY;
+        }
+
+        for (int i = 0; i < dataArray.length; i++) {
+            for (int j = 0; j < dataArray[0].length; j++) {
+                if(dataArray[i][j] == 'K')
+                    dataArray[i][j] = ' ';
+                if(i == exitY && j == exitX)
+                    dataArray[i][j] = 'K';
+            }
+        }
+        MazePanel.mazeData = dataArray;
     }
 
     // Metoda zwracająca wczytane dane z pliku
