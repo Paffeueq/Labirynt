@@ -3,9 +3,10 @@ com/tymipawi/labirynt/utils/MazeSolver$Coords.class
 com/tymipawi/labirynt/panels/AppPanel$1.class
 com/tymipawi/labirynt/panels/AppPanel.class
 com/tymipawi/labirynt/panels/MazePanel$1.class
+com/tymipawi/labirynt/utils/Binary.class
 com/tymipawi/labirynt/panels/AppPanel$2.class
+com/tymipawi/labirynt/utils/InputModifier.class
 com/tymipawi/labirynt/frames/MainFrame.class
 com/tymipawi/labirynt/Main.class
 com/tymipawi/labirynt/utils/DataLoader.class
 com/tymipawi/labirynt/utils/MazeSolver.class
-com/tymipawi/labirynt/utils/InputModyfier.class

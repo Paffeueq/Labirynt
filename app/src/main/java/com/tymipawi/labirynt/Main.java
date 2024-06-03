@@ -1,3 +1,5 @@
+package com.tymipawi.labirynt;
+
 import com.tymipawi.labirynt.frames.MainFrame;
 
 public class Main {

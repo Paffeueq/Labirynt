@@ -29,38 +29,52 @@ public class DataLoader {
     // Metoda do wczytywania danych z pliku tekstowego o podanej ścieżce
     public char[][] readFile(String fileName) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            StringBuilder fileContent = new StringBuilder();
-            String line = reader.readLine();
-            int rows = 0;
+            BufferedReader reader = new BufferedReader(new FileReader(fileName)); // Strumień do czytania danych z pliku
+            StringBuilder fileContent = new StringBuilder(); // Budowniczy dla zawartości pliku
+            String line = reader.readLine(); // Wczytanie pierwszej linii
+            int rows = 0; // Liczba wierszy
             while (line != null) {
-                fileContent.append(line).append("\n");
-                rows++;
-                line = reader.readLine();
+                fileContent.append(line).append("\n"); // Dodanie linii do zawartości pliku
+                rows++; // Zwiększenie licznika wierszy
+                line = reader.readLine(); // Wczytanie kolejnej linii
             }
-            reader.close();
+            reader.close(); // Zamknięcie czytnika
 
-            int columns = fileContent.toString().split("\n")[0].length();
-            char[][] dataArray = new char[rows][columns];
-            String[] lines = fileContent.toString().split("\n");
+            int columns = fileContent.toString().split("\n")[0].length(); // Liczba kolumn (długość pierwszej linii)
+            char[][] dataArray = new char[rows][columns]; // Tablica na dane z pliku
+            String[] lines = fileContent.toString().split("\n"); // Podział zawartości pliku na linie
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
                     char crt = lines[i].charAt(j);
-                    dataArray[i][j] = crt;
-                    if (crt == 'P') {
-                        entryY = i;
-                        entryX = j;
+                    dataArray[i][j] = crt; // Wczytanie znaków do tablicy
+
+                    if(crt == 'P'){
+                        if(i == 0)
+                            entryY = i + 1;
+                        else
+                            entryY = i;
+                        if(j == 0)
+                            entryX = j + 1;
+                        else
+                            entryX = j;
                     }
-                    if (crt == 'K') {
-                        exitY = i;
-                        exitX = j;
+                    if(crt == 'K'){
+                        if(i == rows-1)
+                            exitY = i - 1;
+                        else
+                            exitY = i;
+                        if(j == columns-1)
+                            exitX = j - 1;
+                        else
+                            exitX = j;
                     }
                 }
             }
-            return dataArray;
+
+            return dataArray; // Zwrócenie wczytanych danych
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Nie można wczytać podanego pliku: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            return new char[0][0];
+            JOptionPane.showMessageDialog(null, "Nie można wczytać podanego pliku: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); // Komunikat o błędzie
+            return new char[0][0]; // Zwrócenie pustej tablicy w przypadku błędu
         }
     }
 
@@ -138,11 +152,22 @@ public class DataLoader {
                 }
             }
 
+            if(entryX == 0)
+                entryX++;
+            if(entryY == 0)
+                entryY++;
+            if(exitX == columns-1)
+                exitX--;
+            if(exitY == columns-1)
+                exitY = exitY--;
+
             return dataArray;
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Nie można wczytać podanego pliku binarnego: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return new char[0][0];
         }
+
+
     }
 
     // Metoda do aktualizacji panelu z labiryntem
@@ -189,6 +214,16 @@ public class DataLoader {
 
     // Metoda zwracająca wczytane dane z pliku
     public char[][] getData() {
+        int numRows = dataArray.length;
+        int numCols = dataArray[0].length;
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                if (dataArray[i][j] == '^') {
+                    dataArray[i][j] = ' ';
+                }
+            }
+    }
         return dataArray;
     }
 

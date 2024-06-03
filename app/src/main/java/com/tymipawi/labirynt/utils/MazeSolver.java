@@ -35,8 +35,7 @@ public class MazeSolver {
         }
     }
 
-    public char[][] getPath(char[][] maze, int startX, int startY,
-                            int endX, int endY, int sizeX, int sizeY) {
+    public char[][] getPath(char[][] maze, int startX, int startY, int endX, int endY, int sizeX, int sizeY) {
 
         Queue<Coords> q = new LinkedList<Coords>();
         Map<Coords, Boolean> visited = new HashMap<>();
@@ -49,22 +48,24 @@ public class MazeSolver {
                 path[y][x] = maze[y][x];
             }
         }
-
+    
         q.add(new Coords(startX, startY));
-
+    
         Coords crt;
         Coords next;
         while (!q.isEmpty()) {
             crt = q.remove();
             visited.put(crt, true);
-
+    
+    
             if (crt.x == endX && crt.y == endY) {
                 break;
             }
-
+    
             if (crt.x + 2 < sizeX && maze[crt.y][crt.x + 1] == ' ') {
                 next = new Coords(crt.x + 2, crt.y);
 
+    
                 if (!visited.get(next)) {
                     parent.put(next, crt);
                     q.add(next);
@@ -72,7 +73,7 @@ public class MazeSolver {
             }
             if (crt.x - 2 >= 0 && maze[crt.y][crt.x - 1] == ' ') {
                 next = new Coords(crt.x - 2, crt.y);
-
+    
                 if (!visited.get(next)) {
                     parent.put(next, crt);
                     q.add(next);
@@ -80,7 +81,7 @@ public class MazeSolver {
             }
             if (crt.y + 2 < sizeY && maze[crt.y + 1][crt.x] == ' ') {
                 next = new Coords(crt.x, crt.y + 2);
-
+    
                 if (!visited.get(next)) {
                     parent.put(next, crt);
                     q.add(next);
@@ -89,25 +90,26 @@ public class MazeSolver {
             if (crt.y - 2 >= 0 && maze[crt.y - 1][crt.x] == ' ') {
                 next = new Coords(crt.x, crt.y - 2);
 
+    
                 if (!visited.get(next)) {
                     parent.put(next, crt);
                     q.add(next);
                 }
             }
-
-
         }
-
+    
         crt = new Coords(endX, endY);
+        int i = 0;
         while (!crt.equals(new Coords(startX, startY))) {
-            path[crt.y][crt.x] = '^';
-
+            if(i > 0)
+                path[crt.y][crt.x] = '^';
+            
+            i++;
             crt = parent.get(crt);
         }
-        path[crt.y][crt.x] = '^';
-
-
+        //path[crt.y][crt.y] = '^';
+    
         return path;
-
     }
+    
 }
