@@ -8,14 +8,14 @@ import javax.swing.*;
 
 import com.tymipawi.labirynt.utils.*;
 
-public class AppPanel extends JPanel{
+public class AppPanel extends JPanel {
     private Color bgColor = new Color(54, 69, 79);
     private Color btnColor = new Color(140, 150, 190);
 
     private DataLoader dataLoader;
-    private MazePanel mazePanel; 
-    private MazeSolver solver; 
-    
+    private MazePanel mazePanel;
+    private MazeSolver solver;
+
     private JLabel fileLabel, filenameLabel;
     public String loadedFile = "brak";
 
@@ -24,7 +24,7 @@ public class AppPanel extends JPanel{
     public static JRadioButton startMod;
     public static JRadioButton endMod;
 
-    public AppPanel(){
+    public AppPanel() {
         dataLoader = new DataLoader();
         mazePanel = new MazePanel();
         solver = new MazeSolver();
@@ -54,7 +54,7 @@ public class AppPanel extends JPanel{
         setup();
     }
 
-    private void setup(){
+    private void setup() {
         setSize(1920, 1080);
         setBackground(bgColor);
         setLayout(null);
@@ -67,7 +67,7 @@ public class AppPanel extends JPanel{
 
     private void initializeButtons() {
         JButton loadButton = new JButton("wczytaj labirynt");
- 
+
         loadButton.setBounds(110, 250, 200, 100);
         loadButton.setFont(new Font("Arial", Font.BOLD, 18));
         loadButton.setBackground(btnColor);
@@ -80,7 +80,7 @@ public class AppPanel extends JPanel{
                 MazePanel.mazeData = dataLoader.getData();
                 mazePanel.visualize();
             }
-            
+
         });
 
         JButton solveBtn = new JButton();
@@ -96,14 +96,14 @@ public class AppPanel extends JPanel{
                 int sizeX = maze[0].length, sizeY = maze.length;
 
                 char[][] data = solver.getPath(maze, dataLoader.getEntryX(), dataLoader.getEntryY(),
-                                               dataLoader.getExitX(), dataLoader.getExitY(), sizeX, sizeY);
-                
+                        dataLoader.getExitX(), dataLoader.getExitY(), sizeX, sizeY);
+
                 MazePanel.mazeData = data;
                 mazePanel.visualize();
             }
-            
+
         });
-        
+
         JLabel modLabel = new JLabel("modyfikacja:");
         modLabel.setHorizontalAlignment(SwingConstants.CENTER);
         modLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -137,7 +137,7 @@ public class AppPanel extends JPanel{
         modifyBtnGrp.add(noMod);
         modifyBtnGrp.add(startMod);
         modifyBtnGrp.add(endMod);
-        
+
 
         JButton saveButton = new JButton("zapisz wizualizacje");
         saveButton.setFont(new Font("Arial", Font.BOLD, 18));
@@ -154,11 +154,10 @@ public class AppPanel extends JPanel{
         add(loadButton);
     }
 
-    private void updateSelectedFile(String filename){
+    private void updateSelectedFile(String filename) {
         loadedFile = filename;
         filenameLabel.setText(loadedFile);
     }
 
-   
 
 }

@@ -23,8 +23,8 @@ public class InputModifier {
                 dataLoader.setStart(cellX, cellY);
             if(AppPanel.endMod.isSelected())
                 dataLoader.setEnd(cellX, cellY);
-            
-                panel.visualize();
+
+            panel.visualize();
         }
     }
 }
