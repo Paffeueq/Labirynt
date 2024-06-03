@@ -1,15 +1,13 @@
 package com.tymipawi.labirynt.utils;
 
-import javax.swing.JPanel;
-
 import com.tymipawi.labirynt.panels.AppPanel;
 import com.tymipawi.labirynt.panels.MazePanel;
 
-public class InputModyfier {
+public class InputModifier {
     static DataLoader dataLoader = new DataLoader();
 
     MazePanel panel;
-    public InputModyfier(MazePanel panel){
+    public InputModifier(MazePanel panel){
         this.panel = panel;
     }
 

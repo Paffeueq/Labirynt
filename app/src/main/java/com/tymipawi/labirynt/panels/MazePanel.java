@@ -2,10 +2,9 @@ package com.tymipawi.labirynt.panels;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.xml.crypto.Data;
 
 import com.tymipawi.labirynt.utils.DataLoader;
-import com.tymipawi.labirynt.utils.InputModyfier;
+import com.tymipawi.labirynt.utils.InputModifier;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -18,7 +17,7 @@ public class MazePanel extends JPanel {
     public static char[][] mazeData;
     private int cellWidth=-1, cellHeight=-1;
     
-    private InputModyfier inputModyfier = new InputModyfier(this);
+    private InputModifier inputModyfier = new InputModifier(this);
 
     public MazePanel(){
         addMouseListener(new MouseAdapter() {

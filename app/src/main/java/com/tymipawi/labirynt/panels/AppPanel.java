@@ -2,20 +2,9 @@ package com.tymipawi.labirynt.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
-
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 import com.tymipawi.labirynt.utils.*;
 
@@ -87,7 +76,7 @@ public class AppPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 dataLoader.selectFile();
-                updateSelectedFile(dataLoader.getSelectedFile());
+                updateSelectedFile(DataLoader.getSelectedFile());
                 MazePanel.mazeData = dataLoader.getData();
                 mazePanel.visualize();
             }
